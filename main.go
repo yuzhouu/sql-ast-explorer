@@ -20,8 +20,7 @@ type prefixFS struct {
 }
 
 func (f prefixFS) Open(name string) (http.File, error) {
-	name = fmt.Sprintf("%s%s", f.prefix, name)
-	fmt.Println(name)
+	name = fmt.Sprintf("%s%s", f.prefix, name)g
 	return f.innerFS.Open(name)
 }
 
