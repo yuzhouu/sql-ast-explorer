@@ -5,7 +5,6 @@ import { StreamLanguage } from "@codemirror/language";
 import { pgSQL } from "@codemirror/legacy-modes/mode/sql";
 import { useEffect, useRef } from "react";
 import classNames from "classnames";
-import "./editor.css";
 
 interface Props {
   code?: string;

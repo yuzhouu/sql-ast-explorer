@@ -1,15 +1,26 @@
-import Editor from "@/components/Editor";
-import SplitPane from "@/components/SplitPane";
+import Editor from '@/components/Editor'
+import SplitPane from '@/components/SplitPane'
 
 function App() {
   return (
     <div className="App">
       <SplitPane>
-        <Editor code={"SELECT name FROM users WHERE id = 1"} />
-        <Editor code={"SELECT name FROM users WHERE id = 1"} />
+        <Editor
+          code={`
+CREATE TABLE accounts (
+  user_id serial PRIMARY KEY,
+  username VARCHAR ( 50 ) UNIQUE NOT NULL,
+  password VARCHAR ( 50 ) NOT NULL,
+  email VARCHAR ( 255 ) UNIQUE NOT NULL,
+  created_on TIMESTAMP NOT NULL,
+  last_login TIMESTAMP 
+);
+`}
+        />
+        <Editor code={'SELECT name FROM users WHERE id = 1'} />
       </SplitPane>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
