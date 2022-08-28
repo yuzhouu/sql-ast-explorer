@@ -1,9 +1,24 @@
 import Editor from '@/components/Editor'
 import SplitPane from '@/components/SplitPane'
+import { useMutation } from '@tanstack/react-query'
+import { useState } from 'react'
+import postAst from './api/postAst'
+import ReactJson from 'react-json-view'
 
 function App() {
+  const mutation = useMutation(postAst)
+  const [query, setQuery] = useState('')
+
+  const handleClick = () => {
+    mutation.mutate(query)
+  }
+
+  const jsonData = JSON.parse(mutation.data || '{}')
+  const handleJsonSelect = (select: any) => {}
+
   return (
     <div className="App">
+      <button onClick={handleClick}>编译</button>
       <SplitPane>
         <Editor
           code={`
@@ -16,8 +31,11 @@ CREATE TABLE accounts (
   last_login TIMESTAMP 
 );
 `}
+          onChange={(content) => {
+            setQuery(content)
+          }}
         />
-        <Editor code={'SELECT name FROM users WHERE id = 1'} />
+        <ReactJson src={jsonData} onSelect={handleJsonSelect} />
       </SplitPane>
     </div>
   )

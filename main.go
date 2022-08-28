@@ -26,4 +26,5 @@ func main() {
 	r.NoRoute(func(c *gin.Context) {
 		c.FileFromFS("site/dist/index.htm", http.FileSystem(http.FS(siteSpa)))
 	})
+	r.Run(":9001")
 }

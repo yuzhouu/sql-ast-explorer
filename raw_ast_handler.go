@@ -12,7 +12,7 @@ type rawAstInput struct {
 
 func handleRawAst(c *gin.Context) {
 	var input rawAstInput
-	if err := c.BindJSON(input); err != nil {
+	if err := c.BindJSON(&input); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 	}
 
